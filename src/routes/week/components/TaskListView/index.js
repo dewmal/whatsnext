@@ -2,13 +2,16 @@ import { observer } from "mobx-react-lite";
 import { useContext } from "preact/hooks";
 import { globalContext } from "../../../../store/rootStore";
 
-const TastListItemView = observer(({ task }) => {
+const TastListItemView = observer(({ store, task }) => {
   return (
     <>
       <li>
         <div className="flex items-center">
           <div className="h-10 rounded-full mr-4">{task.title}</div>
-          <div className="h-10 rounded-full mr-4">
+          <div
+            className="h-10 rounded-full mr-4"
+            onClick={() => store.removeTask(task)}
+          >
             <svg
               class="h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +41,7 @@ const TaskListView = observer(() => {
     <>
       <ol class="list-decimal">
         {weekTaskUiStore.taskList.map((task) => (
-          <TastListItemView task={task} />
+          <TastListItemView task={task} store={weekTaskUiStore} />
         ))}
       </ol>
     </>

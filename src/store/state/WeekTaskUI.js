@@ -23,12 +23,11 @@ export class WeekTaskUI {
   }
 
   addTask(task) {
-    console.log(this.taskList);
     this.taskList.push(task);
   }
 
   removeTask(task) {
     const tskIndex = this.taskList.indexOf(task);
-    this.taskList.slice(tskIndex);
+    this.taskList.splice(tskIndex, 1);
   }
 }
