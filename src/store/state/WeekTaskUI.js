@@ -23,6 +23,7 @@ export class WeekTaskUI {
   }
 
   addTask(task) {
+    console.log(this.taskList);
     this.taskList.push(task);
   }
 

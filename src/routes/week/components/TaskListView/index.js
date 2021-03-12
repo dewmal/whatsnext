@@ -1,11 +1,13 @@
-const TastListItemView = () => {
+import { observer } from "mobx-react-lite";
+import { useContext } from "preact/hooks";
+import { globalContext } from "../../../../store/rootStore";
+
+const TastListItemView = observer(({ task }) => {
   return (
     <>
       <li>
         <div className="flex items-center">
-          <div className="h-10 rounded-full mr-4">
-            Lorem ipsum dolor sit amet
-          </div>
+          <div className="h-10 rounded-full mr-4">{task.title}</div>
           <div className="h-10 rounded-full mr-4">
             <svg
               class="h-6 w-6"
@@ -26,18 +28,21 @@ const TastListItemView = () => {
       </li>
     </>
   );
-};
+});
 
-const TaskListView = () => {
+const TaskListView = observer(() => {
+  const store = useContext(globalContext);
+  const { weekTaskUiStore } = store;
+
   return (
     <>
       <ol class="list-decimal">
-        <TastListItemView />
-        <TastListItemView />
-        <TastListItemView />
+        {weekTaskUiStore.taskList.map((task) => (
+          <TastListItemView task={task} />
+        ))}
       </ol>
     </>
   );
-};
+});
 
 export default TaskListView;
