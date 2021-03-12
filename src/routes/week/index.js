@@ -1,28 +1,29 @@
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useContext } from "preact/hooks";
 import TaskAddForm from "./components/TaskAddForm";
 import TaskListView from "./components/TaskListView";
-import moment from "moment";
+import { observer } from "mobx-react-lite";
+import { globalContext } from "../../store/rootStore";
 
-const WeekStartDateComponent = () => {
+const WeekStartDateComponent = ({ store }) => {
   const [weekStartDate, setWeekStartDate] = useState();
   useEffect(() => {
-    const today = moment();
-    const weekStartDateObj = today.startOf("week");
-    setWeekStartDate(weekStartDateObj.format("YYYY-DD-MM"));
-  }, []);
+    setWeekStartDate(store.weekStartDate.format("YYYY-DD-MM"));
+  }, [store]);
   return <>{weekStartDate}</>;
 };
 
-const Weekly = ({ user }) => {
+const Weekly = observer(({ user }) => {
+  const store = useContext(globalContext);
+  const { weekTaskUiStore } = store;
   console.log(user);
   return (
     <div>
       <h1>Weekly plan</h1>
-      <WeekStartDateComponent />
+      <WeekStartDateComponent store={weekTaskUiStore} />
       <TaskAddForm />
       <TaskListView />
     </div>
   );
-};
+});
 
 export default Weekly;

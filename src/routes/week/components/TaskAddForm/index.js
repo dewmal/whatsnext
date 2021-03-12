@@ -1,4 +1,18 @@
+import { useEffect, useState } from "preact/hooks";
+import { WeekTask } from "../../../../store/models/WeekTask";
+
 const TaskAddForm = () => {
+  const [task, setTask] = useState(new WeekTask());
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    if (task) {
+      task.title = title;
+      setTask(task);
+      console.log(task);
+    }
+  }, [task, title]);
+
   return (
     <form class="w-full max-w-sm">
       <div class="flex items-center border-b border-teal-500 py-2">
@@ -7,6 +21,9 @@ const TaskAddForm = () => {
           type="text"
           placeholder="Jane Doe"
           aria-label="Full name"
+          onInput={(e) => {
+            setTitle(e.target.value);
+          }}
         />
         <button
           class="flex-shrink-0 bg-green-500 hover:bg-green-700 border-green-500 hover:border-green-700 text-sm border-4 text-white py-1 px-2 rounded"
