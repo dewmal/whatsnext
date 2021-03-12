@@ -9,11 +9,13 @@ import Weekly from "../routes/week";
 const App = () => (
   <div id="app">
     <Header />
-    <Router>
-      <Home path="/" />
-      <Weekly path="/week" user="me" />
-      {/* <Profile path="/profile/:user" /> */}
-    </Router>
+    <div className="container mx-auto">
+      <Router>
+        <Home path="/" />
+        <Weekly path="/week" user="me" />
+        {/* <Profile path="/profile/:user" /> */}
+      </Router>
+    </div>
   </div>
 );
 
