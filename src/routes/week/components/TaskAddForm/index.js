@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "preact/hooks";
-import { WeekTask } from "../../../../store/models/WeekTask";
 import { globalContext } from "../../../../store/rootStore";
 
 const TaskAddForm = () => {
@@ -10,10 +9,10 @@ const TaskAddForm = () => {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    if (!task) {
-      setTask(new WeekTask());
+    if (weekTaskUiStore && !task) {
+      setTask(weekTaskUiStore.getWeekTask());
     }
-  }, [task]);
+  }, [weekTaskUiStore, task]);
 
   useEffect(() => {
     if (task) {

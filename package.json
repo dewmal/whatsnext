@@ -35,9 +35,12 @@
     "mobx-react-lite": "^3.2.0",
     "moment": "^2.29.1",
     "postcss": "^7",
+    "pouchdb": "^7.2.2",
+    "pouchdb-browser": "^7.2.2",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
+    "react-pouchdb": "^2.1.0",
     "rxjs": "^6.6.6",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
